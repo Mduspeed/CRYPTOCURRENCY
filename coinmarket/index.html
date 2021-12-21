@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="./assets/css/base.css">
+    <link rel="stylesheet" href="./assets/css/main.css">
+    <link rel="stylesheet" href="./login.html">
+    <link rel="stylesheet" href="./register.html">
+    <link rel="stylesheet" href="./assets/js/register.js">
+    <link rel="stylesheet" href="./assets/css/grid.css">
+    <link rel="stylesheet" href="./assets/css/responsive.css">
+    <link rel="stylesheet" href="./assets/fonts/fontawesome-free-5.15.4-web/fontawesome-free-5.15.4-web/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+    
+    <script src="assets/db/itemList.js"></script>
+    <script src="assets/js/customFunc.js"></script>
+    <link rel="shortcut icon" href="./assets/img/crypto.png" type="image/x-icon">
+    <title>Cryptocurrency</title>
+    
+    <link rel="stylesheet" href="static/css/boostrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+    <!-- Block Element Modifier-->
+    <div class="app">
+        <header class="header">
+            <div class="grid">
+                <nav class="header__navbar">
+                    <ul class="header__nav-list">
+                        <li class="header__nav-item header__nav-item--has-qr"> 
+                            App Downloads
+                            <div class="header_qr">
+                                <img src="./assets/img/coupangQR.png" alt="QR code" class="header_qr-img">
+                               <div class="header_qr-apps">
+                                   <a href="" class="header__qr-link">
+                                       
+                                       <img src="./assets/img/chplaystore.png" alt="chplaystore" class="header_qr-download-img">
+                                    </a>
+                                    
+                                    <a href="" class="header__qr-link">
+                                        <img src="./assets/img/aple_store.png" alt="aple_store" class="header_qr-download-img">
+                                    </a>
+                               </div>
+                            </div>
+                        </li>
+                        <li class="header__nav-item"> 
+                            <a href="" class="header__nav-item-title--no-pointer">English</a>
+                            
+                        </li>
+                        <li class="header__nav-item"> 
+                            <a href="" class="header__nav-item-title--coin-market">코인 시장</a>
+                            
+                        </li>
+                        <li class="header__nav-item"> 
+                            <a href="" class="header__nav-item-title--coin-data">코인 테이터</a>
+                            
+                        </li>
+
+                    </ul>
+                    <ul class="header__nav-list">
+                        <a href="login.html" class="header__nav-item header__nav-item--strong" onclick="modalOn('login')">로그인</a>
+                        <a href="register.html" class="header__nav-item header__nav-item--strong" onclick="modalOn('register')">회원가입</a>
+                        <li class="header__nav-item">
+                            <a href="" class="header__nav-item-link">알림</a>
+                        </li>
+                       
+                        <li class="header__nav-item">
+                            <i class="header__people-icon far fa-user">
+                                <span class="header__people-text">MY CASH</span>
+                            </i>
+                        </li>
+                        
+                    </ul>
+                    
+                    
+                </nav>
+                <!-- HEADER WITH SEARCH -->
+                <div class="header-with-search">
+                    <div class="header__catalo">
+                        <i class="header__catalo-icon fas fa-poll-h"></i>
+                        <a class ="header__catalo-text" href="">전체 카테고리</a>
+                    </div>
+                    <div class="header__logo">
+                        <img
+                            class="header__logo-img"
+                            src="./assets/img/crypto.png"
+                            width=""
+                            height=""
+                            alt=" Logo"
+                            
+                        />
+                    </div>
+                    <form class="header__search" name="itemsearch" action="search.html" method="get">
+                        <div class="header__search-seclect">
+                            <span class="header__search-seclect-label">전체</span>
+                            <i class="header__search-seclect-icon fas fa-caret-down"></i>
+                        </div>
+                        <input name="item" type="search" class="header__search-input" placeholder="찾고 싶은 상품을 검색해보세요!">
+                        <button type="submit"><img src="assets/img/search.png" style="height: 20px; width: 20px;"></button>        
+                    </form>
+                    <div class="header__menu">
+                       
+                    
+                </div>
+            </div>
+        </header>
+<!-- coin-->
+        <div class="container">
+            <h1>Cryptocurrency Index</h1>
+            
+            
+            
+            <div id="app">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <td>#</td>
+                        <td>이름Name</td>
+                        <td>동전(Coin)</td>
+                        <td>가격(Price)</td>
+                        <td>시가총액(Market Cap)</td>
+                    </thead>
+                    <tbody>
+                    <tr v-for="(coin, index) in coins">
+                        <td>{{ index + 1 }}</td>
+                        <td><img v-bind:src="getCoinImage(coin)"> {{ coin.CoinInfo.FullName }}</td>
+                        <td>{{ coin.CoinInfo.Name }}</td>
+                        <td>{{ coin.DISPLAY.USD.PRICE }}</td>
+                        <td>{{ coin.DISPLAY.USD.MKTCAP }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            
+            <script src="https://unpkg.com/vue"></script>
+            <script src="https://cdn.jsdelivr.net/npm/vue2-filters/dist/vue2-filters.min.js"></script>
+            <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+            <script src="static/js/app.js"></script>
+            <script src = "https://code.highcharts.com"> </script>
+        </div>
+
+        <footer class="footer">
+            <div class="grid wide footer__content">
+                <div class="row">
+                    <div class="col l-2-4 m-4 c-6">
+                        <h3 class="footer__heading">Cryptocurrency소개</h3>
+                        <ul class="footer__list">
+                            <li class="footer-item">
+                                <a href="" class="footer-item__link"></a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                    <div class="col l-2-4 m-4 c-6">
+                        <h3 class="footer__heading">마케팅</h3>
+                        <ul class="footer__list">
+                            <li class="footer-item">
+                                <a href="" class="footer-item__link"></a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                    <div class="col l-2-4 m-4 c-6">
+                        <h3 class="footer__heading">개발자</h3>
+                        <ul class="footer__list">
+                            <li class="footer-item">
+                                <a href="" class="footer-item__link"></a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                    <div class="col l-2-4 m-4 c-6">
+                        <h3 href="" class="footer__heading">공지사항</h3>
+                        <ul class="footer__list">
+                            <li class="footer-item">
+                                <a href="" class="footer-item__link"></a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                    <div class="col l-2-4 m-4 c-6">
+                        <h3 class="footer__heading">Get in touch</h3>
+                        <ul class="footer__list">
+                            <li class="footer-item">
+                                <a href="" class="footer-item__link"></a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                                       
+                </div>
+                
+                <div class="row footer2">
+                    
+                    <div class="col l-2-4 m-8 c-12">
+                        <h3 class="footer__heading footer__heading2">Get the CryptoCompare App</h3>
+                        <div class="footer__download">
+                            <img src="./assets/img/coupangQR.png" alt="Download QR" class="footer__download-qr">
+                            <div class="footer__download-apps">
+                                <a href="https://play.google.com/store/games" class="footer__download-app-link">
+                                    <img src="./assets/img/chplaystore.png" alt="Google Play"
+                                        class="footer__download-app-img">
+                                </a>
+                                <a href="http://127.0.0.1:5500/cosmetics-shop/index.html" class="footer__download-app-link">
+                                    <img src="./assets/img/aple_store.png" alt="App Store"
+                                        class="footer__download-app-img">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col l-2-4 m-4 c-6">
+                        <h3 class="footer__heading footer__heading2">Cryptocurrency(주)</h3>
+                        <ul class="footer__list">
+                            <li class="footer-item footer-item__2">
+                                <a href="" class="footer-item__link">대표이사 :</a>
+                            </li>
+                            <li class="footer-item">
+                                <a href="" class="footer-item__link">사업자 등록번호 : 1993-00-0032</a>
+                            </li>
+                            <li class="footer-item">
+                                <a href="" class="footer-item__link">통신판매업신고 : 71321-서울-0000</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col l-2-4 m-4 c-6">
+                        <h3 class="footer__heading footer__heading2">연락하기</h3>
+                        <ul class="footer__list">
+                            <li class="footer-item footer-item__2">
+                                <a href="" class="footer-item__link">TEL. (02) 970.000</a>
+                            </li>
+                            <li class="footer-item">
+                                <a href="" class="footer-item__link">01811 서울시 노원구 공릉로 232 서울과학기술대학교</a>
+                            </li>
+                            <li class="footer-item">
+                                <a href="" class="footer-item__link">email:help@Cryptocurrency.com</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <div class="grid wide">
+                    <p class="footer__text"></p>
+                </div>
+            </div>
+        </footer>
+            
+        
+    </div>
+</body>
+
+</html>
